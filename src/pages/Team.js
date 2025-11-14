@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Team = () => {
   const sectionRef = useRef(null);
+  const [imageErrors, setImageErrors] = useState({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,15 +30,19 @@ const Team = () => {
 
   const teamMembers = [
     {
+      image: 'https://media.licdn.com/dms/image/v2/D4E03AQHmvc3m4ONjSQ/profile-displayphoto-scale_200_200/B4EZo7gWYCHcAc-/0/1761934927936?e=1764806400&v=beta&t=mfOPK0G_o-g-EeYOiFepgcZWBIyeQXmTcLPMU4VMxUo',
       initials: 'AA',
       name: 'Amirreza Alasti',
       role: 'Co-Founder',
+      email: 'amirrezalasti@gmail.com',
       bio: 'Passionate about music technology and AI, Amirreza brings expertise in developing innovative solutions that bridge the gap between musicians and technology.',
     },
     {
+      image: 'https://media.licdn.com/dms/image/v2/D4E03AQHvAR8SLwcFlg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1670080110582?e=1764806400&v=beta&t=83dP5dnqgJU5I4VXDXf8UVolABsHk6MPidhNinZpp64',
       initials: 'EE',
       name: 'Efe Erdal',
       role: 'Co-Founder',
+      email: 'efeerdal1998@gmail.com',
       bio: 'With a deep understanding of music and software engineering, Efe is dedicated to creating tools that empower solo musicians to create fuller, richer performances.',
     },
   ];
@@ -57,10 +62,20 @@ const Team = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="team-card">
                 <div className="team-avatar">
-                  <div className="avatar-placeholder">{member.initials}</div>
+                  {!imageErrors[index] ? (
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="team-profile-img"
+                      onError={() => setImageErrors(prev => ({ ...prev, [index]: true }))}
+                    />
+                  ) : (
+                    <div className="avatar-placeholder">{member.initials}</div>
+                  )}
                 </div>
                 <h2 className="team-name">{member.name}</h2>
                 <p className="team-role">{member.role}</p>
+                <a href={`mailto:${member.email}`} className="team-email">{member.email}</a>
                 <p className="team-bio">{member.bio}</p>
               </div>
             ))}

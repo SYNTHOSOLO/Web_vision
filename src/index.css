@@ -405,6 +405,16 @@ code {
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.team-profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 }
 
 .avatar-placeholder {
@@ -429,8 +439,21 @@ code {
 .team-role {
     font-size: 1rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
+}
+
+.team-email {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+}
+
+.team-email:hover {
+    color: var(--primary-color);
 }
 
 .team-bio {
